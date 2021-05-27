@@ -1,4 +1,5 @@
 # Skype Auto Avatar
+<img height="200" src="/images/meme-dog-2.jpg">
 This repo is used to update Skype avatar every defined interval.
 
 ## How to use
