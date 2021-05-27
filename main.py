@@ -1,5 +1,7 @@
 import os
 import random
+import schedule
+import time
 
 from skpy import Skype, SkypeConnection
 
@@ -8,7 +10,7 @@ def get_random_image(path):
     return '{0}/{1}'.format(path, random.choice(os.listdir(path)))
 
 
-if __name__ == '__main__':
+def update_new_avatar():
     # API endpoint to change avatar
     API_AVATAR = 'https://avatar.skype.com'
     USER = os.getenv('SKYPE_USER')
@@ -30,3 +32,13 @@ if __name__ == '__main__':
         print('Uploaded avatar successfully')
     except Exception as e:
         print('¯\_(ツ)_/¯ Failed to update new avatar as', e)
+
+
+if __name__ == '__main__':
+
+    INTERVAL = os.getenv('INTERVAL', 30)
+    schedule.every(INTERVAL).minutes.do(update_new_avatar)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
