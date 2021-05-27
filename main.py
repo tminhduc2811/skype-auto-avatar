@@ -36,7 +36,7 @@ def update_new_avatar():
 
 if __name__ == '__main__':
 
-    INTERVAL = os.getenv('INTERVAL', 30)
+    INTERVAL = int(os.getenv('INTERVAL', 30))
     schedule.every(INTERVAL).minutes.do(update_new_avatar)
 
     while True:
